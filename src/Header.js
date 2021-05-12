@@ -3,6 +3,7 @@ import './App.css';
 import React, {useState,useDebugValue} from 'react'
 import styled from 'styled-components'
 import {useSpring,animated} from 'react-spring'
+import {useHover} from './customHooks'
 
 const MyUl = styled.ul`
 
@@ -38,30 +39,27 @@ const SelfAnimatedLi = styled.li`
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.63);
   transform: rotateY(-30deg) scale(1) ;
   transform-style: preserve-3d;
-  transition: transform 300ms ease-in-out;
+  transition: transform 300ms ease-in-out,
+    color 300ms ease-in-out;
 
-  
+
   
   &:hover{
     transform:rotateY(-30deg) scale(1.1) translateZ(20px);
+    color: red;
   }
 `
 
 
 
-function useHover(CustomDiv){
-  const [hovered,setHovered]= useState(false)
 
-  const animation = useSpring({
-    transform : hovered? 'rotateY(-30deg) scale(1.1) translateZ(20px) ':'rotateY(-30deg) scale(1) translateZ(0px)'
-  })
-
-  useDebugValue(hovered?? 'false')
-  return [animation,setHovered];
-}
 
 const GetLi =({children})=>{
-  const [animation,setHovered] = useHover()
+  const [animation,setHovered] = useHover({
+    transformTo:'rotateY(-30deg) scale(1.1) translateZ(20px)',
+    transformFrom:'rotateY(-30deg) scale(1) translateZ(0px)',
+    background:'green'
+  })
 
   const AnimatedLi = animated(MyLi)
 
