@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, {useState,useDebugValue} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {useSpring,animated} from 'react-spring'
 import {useHover} from './customHooks'
