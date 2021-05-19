@@ -39,14 +39,13 @@ const SelfAnimatedLi = styled.li`
   box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.63);
   transform: rotateY(-30deg) scale(1) ;
   transform-style: preserve-3d;
-  transition: transform 300ms ease-in-out,
-    color 300ms ease-in-out;
+  transition: transform 300ms ease-in-out;
 
 
   
   &:hover{
     transform:rotateY(-30deg) scale(1.1) translateZ(20px);
-    color: red;
+    
   }
 `
 
@@ -58,7 +57,7 @@ const GetLi =({children})=>{
   const [animation,setHovered] = useHover({
     transformTo:'rotateY(-30deg) scale(1.1) translateZ(20px)',
     transformFrom:'rotateY(-30deg) scale(1) translateZ(0px)',
-    background:'green'
+    background:'white'
   })
 
   const AnimatedLi = animated(MyLi)

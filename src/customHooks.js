@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useDebugValue} from 'react'
+import {useState, useEffect, useDebugValue} from 'react'
 import {useSpring} from 'react-spring'
 
 function useHover({transformFrom,transformTo,background='red'}){
