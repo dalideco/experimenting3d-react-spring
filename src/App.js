@@ -4,6 +4,7 @@ import Multi from './Multi'
 import Interpolate from './Interpolate'
 import ManySprings from './ManySprings'
 import LearnContext from "./LearnContext";
+import TransitionPage from "./TransitionPage"
 
 
 
@@ -17,7 +18,8 @@ function App() {
         {/* <Multi/> */}
         {/* <Interpolate/> */}
         {/* <ManySprings/> */}
-        <LearnContext/>
+        {/* <LearnContext/> */}
+        <TransitionPage/>
       </header>
     </div>
   );

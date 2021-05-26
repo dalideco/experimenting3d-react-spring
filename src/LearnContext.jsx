@@ -1,11 +1,22 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { userContext } from "./utilities/Contexts";
 import UsingTheContext from './Components/UsingTheContext'
 
 
 
-const LearnContext = () => {
+const LearnContext  = () => {
     
+    
+
+    useEffect(()=>{
+        show()
+    },[])
+
+    const show= ()=>{
+        console.log('hello')
+    }
+    
+
     const [message, setMessage] = useState("initial message");
     
 
