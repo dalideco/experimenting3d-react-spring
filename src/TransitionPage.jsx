@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import { BrowserRouter as Router, NavLink , Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, NavLink , Switch, Route,useLocation } from "react-router-dom";
+import { useTransition,animated } from "react-spring";
 
 
 const FullPageDiv= styled.div`
@@ -38,6 +39,7 @@ const StyledNav = styled.nav`
 const StyledPage = styled.div`
     flex: 1;
     text-align: center;
+    position: absolute;
 `
 
 
@@ -59,6 +61,43 @@ const LittleComponent = ({children})=>{
     )
 }
 
+const MyRouter= ()=>{
+
+    const location = useLocation();
+
+    const transitions  = useTransition( location  ,  {
+        from: {opacity:0, transform:"translateX(-100%)"},
+        enter: {opacity:1, transform:"translateX(0%)"},
+        leave: {opacity:0, transform:"translateX(100%)"}
+    })
+
+    const AnimatedStyledPage = animated(StyledPage)
+
+    return (
+
+        
+        <div style={{flex:'1'}}>
+            {transitions((style,item)=>(
+                <AnimatedStyledPage style={style} key={item.pathname} >
+                    
+                    <Switch location={item}>
+                        <Route exact path="/">
+                            <LittleComponent>this is the home </LittleComponent>
+                        </Route>
+                        <Route exact path="/hello">
+                            <LittleComponent>This is the hello part</LittleComponent>
+                        </Route>
+                        <Route exact path="/deco">
+                            <LittleComponent>This is DALIDECOCK</LittleComponent>
+                        </Route>
+                    </Switch>
+                </AnimatedStyledPage>
+            ))}
+            
+            
+        </div>
+    )
+}
 
 // this is the main component
 const TransitionPage = () => {
@@ -70,19 +109,7 @@ const TransitionPage = () => {
                 <NavLink exact to="/hello" activeClassName="green">hello</NavLink>
                 <NavLink exact to="/deco" activeClassName="green">deco</NavLink>
             </StyledNav>
-            <StyledPage>
-                <Switch>
-                    <Route exact path="/">
-                        <LittleComponent>this is the home</LittleComponent>
-                    </Route>
-                    <Route exact path="/hello">
-                        <LittleComponent>This is the hello part</LittleComponent>
-                    </Route>
-                    <Route exact path="/deco">
-                        <LittleComponent>This is DALIDECOCK</LittleComponent>
-                    </Route>
-                </Switch>
-            </StyledPage>
+            <MyRouter/>
         </FullPageDiv>
         </Router>
     );
